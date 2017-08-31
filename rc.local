@@ -1,0 +1,28 @@
+# File to be saved as /etc/rc.local
+
+# Set some vars
+export NFS_SRC="192.168.1.50:/nfs-lede"
+export NFS_DST="/nfs"
+export NFS_OPTS="-o rw,noatime,nodiratime,nolock"
+export CHROOT_DIR="$NFS_DST/tpblau-chroot"
+
+# Make sure network will be up
+sleep 15
+
+# Mount NFS
+mount -t nfs $NFS_SRC $NFS_DST $NFS_OPTS
+
+# Prepare chroot env
+mount -t proc proc $CHROOT_DIR/proc/
+mount -t sysfs sys $CHROOT_DIR/sys/
+mount -o bind /dev $CHROOT_DIR/dev/
+rm -rf $CHROOT_DIR/tmp/*
+cp -a /tmp/* $CHROOT_DIR/tmp/
+
+# Start OpenVPN
+# Files from this pkg and all its dependencies
+# are linked from its original location in $CHROOT_DIR
+insmod tun
+/etc/init.d/openvpn start
+
+exit 0
