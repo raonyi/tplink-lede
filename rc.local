@@ -18,6 +18,8 @@ mount -t sysfs sys $CHROOT_DIR/sys/
 mount -o bind /dev $CHROOT_DIR/dev/
 rm -rf $CHROOT_DIR/tmp/*
 cp -a /tmp/* $CHROOT_DIR/tmp/
+# To enter chroot environment:
+# chroot /nfs/tpblau-chroot/ bash -c "su - ruben"
 
 # Start OpenVPN
 # Files from this pkg and all its dependencies
