@@ -24,7 +24,8 @@ cp -a /tmp/* $CHROOT_DIR/tmp/
 # Start OpenVPN
 # Files from this pkg and all its dependencies
 # are linked from its original location in $CHROOT_DIR
-insmod tun
-/etc/init.d/openvpn start
+insmod tun # Load tun0 interface module
+/etc/init.d/openvpn start # Start service
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j MASQUERADE # Enable NAT to allow exit to internet from VPN clients
 
 exit 0
