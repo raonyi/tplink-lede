@@ -1,4 +1,8 @@
 # DDNS client config file to be saved as /etc/config/ddns
+# To be used after installing opkg packages:
+# - ddns-scripts
+# - ddns-scripts_no-ip_com
+#
 config ddns 'global'
 	option ddns_dateformat '%F %R'
 	option ddns_loglines '250'
