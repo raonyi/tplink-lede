@@ -12,7 +12,7 @@ sleep 15
 # Mount NFS
 mount -t nfs $NFS_SRC $NFS_DST $NFS_OPTS
 
-# Prepare chroot env
+# Prepare chroot environment
 mount -t proc proc $CHROOT_DIR/proc/
 mount -t sysfs sys $CHROOT_DIR/sys/
 mount -o bind /dev $CHROOT_DIR/dev/
@@ -27,5 +27,8 @@ cp -a /tmp/* $CHROOT_DIR/tmp/
 insmod tun # Load tun0 interface module
 /etc/init.d/openvpn start # Start service
 iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -j MASQUERADE # Enable NAT to allow exit to internet from VPN clients
+
+# Start DDNS client inside chroot env
+chroot /nfs/tpblau-chroot/ bash -c "/etc/init.d/ddns start"
 
 exit 0

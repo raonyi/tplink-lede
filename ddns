@@ -1,0 +1,17 @@
+# DDNS client config file to be saved as /etc/config/ddns
+config ddns 'global'
+	option ddns_dateformat '%F %R'
+	option ddns_loglines '250'
+	option upd_privateip '0'
+
+config service 'myddns'
+	option lookup_host 'DOMAIN'
+	option domain 'DOMAIN'
+	option username 'USER'
+	option password 'PASS'
+	option interface 'wlan0'
+	option ip_source 'web'
+	#option ip_network 'wlan0'
+	option service_name 'no-ip.com'
+	option enabled 1
+
