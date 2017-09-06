@@ -1,0 +1,30 @@
+# LEDE network config file, to be saved as /etc/config/network
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd1f:991a:b649::/48'
+
+config interface 'lan'
+	option ifname 'eth0'
+	# Dynamic IP
+	option proto 'dhcp'
+	# Static IP
+	#option proto 'static'
+	#option ipaddr 'IP_ADDR'
+	#option netmask '255.255.255.0'
+	#option gateway 'GATEWAY'
+	#option dns 'DNS'
+
+config interface 'wifi'
+	option ifname 'wlan0'
+	option proto 'dhcp'
+
+config interface 'vpn0'
+	option ifname 'tun0'
+	option proto 'none'
+	option auto '1'
+

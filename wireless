@@ -1,0 +1,16 @@
+# LEDE wireless config file, to be saved as /etc/config/wireless
+config wifi-device 'radio0'
+        option type 'mac80211'
+        option channel '11'
+        option hwmode '11g'
+        option path 'platform/ar934x_wmac'
+        option htmode 'HT20'
+        option disabled '0'
+
+config wifi-iface 'default_radio0'
+        option device 'radio0'
+        option network 'wifi'
+        option mode 'sta'
+        option ssid 'SSID_here'
+        option encryption 'psk2'
+        option key 'PASS_here'
