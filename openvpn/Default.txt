@@ -1,0 +1,15 @@
+# Config that will be appended to each .ovpn client config created with MakeOpenVPN.sh
+client
+dev tun
+proto tcp
+remote <SERVER> <PORT>
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+mute-replay-warnings
+ns-cert-type server
+key-direction 1
+cipher AES-128-CBC
+comp-lzo
+verb 1
